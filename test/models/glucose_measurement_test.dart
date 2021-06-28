@@ -24,5 +24,19 @@ main() {
       expect(measurement.toString(),
           'GlucoseMeasurement [value: 7.2, timestamp: 2021-06-28 09:00:00.000, unit: mmol/L]');
     });
+
+    test('should correctly compare GlucoseMeasurements objects', () async {
+      final jsonString = {
+        "value": "8.9",
+        "timestamp": "2021-02-10T09:25:00",
+        "unit": "mmol/L"
+      };
+
+      final parsedMeasurement = GlucoseMeasurement.fromJson(jsonString);
+      final instanceMeasurement =
+          GlucoseMeasurement(8.9, DateTime(2021, 02, 10, 09, 25, 00), 'mmol/L');
+
+      expect(instanceMeasurement, equals(parsedMeasurement));
+    });
   });
 }

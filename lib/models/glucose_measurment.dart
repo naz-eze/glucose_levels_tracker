@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 class GlucoseMeasurement {
   final double value;
   final DateTime timestamp;
@@ -14,4 +16,14 @@ class GlucoseMeasurement {
   String toString() {
     return "GlucoseMeasurement [value: $value, timestamp: $timestamp, unit: $unit]";
   }
+
+  @override
+  bool operator ==(other) =>
+      other is GlucoseMeasurement &&
+      value == other.value &&
+      timestamp == other.timestamp &&
+      unit == other.unit;
+
+  int get hashCode =>
+      hashValues(value.hashCode, timestamp.hashCode, unit.hashCode);
 }
