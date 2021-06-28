@@ -10,7 +10,6 @@ void main() {
         DateTimeRange(start: startDate, end: endDate);
 
     // Build DateRangeSelector widget
-
     await tester.pumpWidget(MaterialApp(
       home: DateRangeSelector(
         startDate: startDate,
@@ -29,24 +28,31 @@ void main() {
     expect(tableRow.children?.length, 2);
 
     // Verify details on first table row
-    final startDateButton = tableRow.children?.first as ElevatedButton;
-    final startDateButtonText = startDateButton.child as Text;
-    expect(startDateButtonText.data, '28/06/2021');
-    expect(
-      startDateButtonText.style,
-      TextStyle(fontSize: 18, color: Colors.black),
-    );
+    final startDateSelector = tableRow.children?.first as DateSelector;
+    expect(startDateSelector.text, '28/06/2021');
     await verifyDatePickerDialogOpens(tester, '28/06/2021');
 
     // Verify details on second table row
-    final endDateButton = tableRow.children?.last as ElevatedButton;
-    final endDateButtonText = endDateButton.child as Text;
-    expect(endDateButtonText.data, '12/07/2021');
-    expect(
-      endDateButtonText.style,
-      TextStyle(fontSize: 18, color: Colors.black),
-    );
+    final endDateButton = tableRow.children?.last as DateSelector;
+    expect(endDateButton.text, '12/07/2021');
     await verifyDatePickerDialogOpens(tester, '12/07/2021');
+  });
+
+  testWidgets('Date Selector test', (WidgetTester tester) async {
+    VoidCallback onPressedFn = () => print('Pressed');
+
+    // Build DateSelector widget
+    await tester.pumpWidget(MaterialApp(
+      home: DateSelector(text: '29/06/2021', onPressed: onPressedFn),
+    ));
+
+    final button =
+        find.byType(ElevatedButton).evaluate().single.widget as ElevatedButton;
+    final buttonText = button.child as Text;
+
+    expect(buttonText.data, '29/06/2021');
+    expect(buttonText.style, TextStyle(fontSize: 18, color: Colors.black));
+    expect(button.onPressed, onPressedFn);
   });
 }
 

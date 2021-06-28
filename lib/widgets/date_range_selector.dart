@@ -28,18 +28,12 @@ class DateRangeSelector extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            ElevatedButton(
-              child: Text(
-                startDate.dmy(),
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
+            DateSelector(
+              text: startDate.dmy(),
               onPressed: () => _selectDateRange(context),
             ),
-            ElevatedButton(
-              child: Text(
-                endDate.dmy(),
-                style: TextStyle(fontSize: 18, color: Colors.black),
-              ),
+            DateSelector(
+              text: endDate.dmy(),
               onPressed: () => _selectDateRange(context),
             ),
           ],
@@ -47,4 +41,24 @@ class DateRangeSelector extends StatelessWidget {
       ],
     );
   }
+}
+
+class DateSelector extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+
+  const DateSelector({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => ElevatedButton(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 18, color: Colors.black),
+        ),
+        onPressed: onPressed,
+      );
 }
