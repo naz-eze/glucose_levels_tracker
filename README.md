@@ -1,6 +1,6 @@
 # glucose_levels_tracker
 
-Single page flutter application to display glucose levels tracker.
+Single page flutter application to track glucose levels.
 
 ![App screenshot](./image.png)
 
