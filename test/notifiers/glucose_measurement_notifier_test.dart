@@ -4,7 +4,7 @@ import 'package:glucose_levels_tracker/models/glucose_measurment.dart';
 import 'package:glucose_levels_tracker/notifiers/glucose_measurement_notifier.dart';
 import 'package:mockito/mockito.dart';
 
-class MockCallbackFn extends Mock {
+class _MockCallbackFn extends Mock {
   call();
 }
 
@@ -58,7 +58,7 @@ main() {
     });
 
     test('setSelectedDateRange should notify listeners', () {
-      final notifyListenerCallback = MockCallbackFn();
+      final notifyListenerCallback = _MockCallbackFn();
       final notifier = GlucoseMeasurementNotifier(measurements);
       notifier.addListener(notifyListenerCallback);
 

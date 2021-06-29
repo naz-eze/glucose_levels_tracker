@@ -40,8 +40,8 @@ class GlucoseMeasurementNotifier extends ChangeNotifier {
     _selectedDateRange = value;
     _filteredMeasurements = _measurements
         .where((element) =>
-            element.timestamp
-                .isAfter(value.start.subtract(Duration(days: 1))) &&
+            (element.timestamp.isAfter(value.start) ||
+                element.timestamp.isAtSameMomentAs(value.start)) &&
             element.timestamp.isBefore(value.end.add(Duration(days: 1))))
         .toList();
     _calculateStats();
