@@ -1,9 +1,12 @@
 # glucose_levels_tracker
 
-Single page flutter application to display glucose levels tracker
+Single page flutter application to display glucose levels tracker.
+
+![App screenshot](./image.png)
+
 
 ## Prerequisites
-Visit (here)[https://flutter.dev/docs/get-started/install] on how to set up your computer for Flutter.
+Visit [here](https://flutter.dev/docs/get-started/install) on how to set up your computer for Flutter.
 - Install Flutter (version 2.2.2)
 - Install Xcode (to run project on iOS simulator)
 - Install Android Studio (to run on your Android device or Android Emulator)
