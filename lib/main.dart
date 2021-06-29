@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:glucose_levels_tracker/constants/api_endpoints.dart';
 import 'package:glucose_levels_tracker/models/glucose_measurment.dart';
 import 'package:glucose_levels_tracker/notifiers/glucose_measurement_notifier.dart';
 import 'package:glucose_levels_tracker/services/glucose_service.dart';
@@ -7,9 +8,7 @@ import 'package:http/http.dart' show Client;
 import 'package:provider/provider.dart';
 
 void main() {
-  final glucoseService = GlucoseService(
-      'https://s3-de-central.profitbricks.com/una-health-frontend-tech-challenge/sample.json',
-      Client());
+  final glucoseService = GlucoseService(glucoseMeasurementApi, Client());
   runApp(Main(glucoseService));
 }
 
