@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:glucose_levels_tracker/extensions/math_operations.dart';
+import 'package:glucose_levels_tracker/extensions/number_operations.dart';
 import 'package:glucose_levels_tracker/models/glucose_measurment.dart';
 
 class GlucoseMeasurementNotifier extends ChangeNotifier {
@@ -53,7 +54,7 @@ class GlucoseMeasurementNotifier extends ChangeNotifier {
 
     _minGlucoseLevel = glucoseValues.reduce(min);
     _maxGlucoseLevel = glucoseValues.reduce(max);
-    _avgGlucoseLevel = double.parse(glucoseValues.average().toStringAsFixed(2));
-    _medianGlucoseLevel = glucoseValues.median();
+    _avgGlucoseLevel = glucoseValues.average().roundUp(2);
+    _medianGlucoseLevel = glucoseValues.median().roundUp(2);
   }
 }
