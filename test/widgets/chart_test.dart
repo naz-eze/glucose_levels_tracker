@@ -5,7 +5,8 @@ import 'package:glucose_levels_tracker/models/glucose_measurment.dart';
 import 'package:glucose_levels_tracker/widgets/chart.dart';
 
 void main() {
-  testWidgets('Chart test', (WidgetTester tester) async {
+  testWidgets('Chart test should correctly build chart widget',
+      (WidgetTester tester) async {
     final firstDateTime = DateTime(2021, 06, 28, 10, 55);
     final lastDateTime = DateTime(2021, 06, 30, 13, 25);
 
@@ -67,5 +68,28 @@ void main() {
     expect(titlesData.leftTitles.margin, 8);
     expect(titlesData.leftTitles.getTextStyles, isNotNull);
     expect(titlesData.leftTitles.getTitles, isNotNull);
+  });
+
+  testWidgets('should use default interval', (WidgetTester tester) async {
+    // Build Chart widget with one measurement
+    final List<GlucoseMeasurement> measurements = [
+      GlucoseMeasurement(7.8, DateTime(2021, 06, 29, 09, 30), 'mmol/L')
+    ];
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Chart(
+            measurements: measurements,
+            maxReading: 7.8,
+          ),
+        ),
+      ),
+    );
+
+    final lineChart =
+        find.byType(LineChart).evaluate().single.widget as LineChart;
+    final titlesData = lineChart.data.titlesData;
+    expect(titlesData.bottomTitles.interval, 1.0);
   });
 }

@@ -17,7 +17,7 @@ class Chart extends StatelessWidget {
       Colors.blue,
     ];
 
-    final titleStyles = TextStyle(
+    final _titleStyles = TextStyle(
       color: Colors.black87,
       fontWeight: FontWeight.bold,
       fontSize: 9,
@@ -29,6 +29,10 @@ class Chart extends StatelessWidget {
         measurement.value,
       );
     }).toList();
+
+    final _intervalRatio = 4;
+    final _interval = ((_values.last.x - _values.first.x) / _intervalRatio);
+    final _defaultInterval = 1.0;
 
     return LineChart(
       LineChartData(
@@ -59,18 +63,18 @@ class Chart extends StatelessWidget {
           show: true,
           bottomTitles: SideTitles(
             showTitles: true,
-            getTextStyles: (value) => titleStyles,
+            getTextStyles: (value) => _titleStyles,
             getTitles: (value) {
               final DateTime date =
                   DateTime.fromMillisecondsSinceEpoch(value.toInt());
               return date.dm();
             },
             margin: 8,
-            interval: (_values.last.x - _values.first.x) / 4,
+            interval: _interval == 0 ? _defaultInterval : _interval,
           ),
           leftTitles: SideTitles(
             showTitles: true,
-            getTextStyles: (value) => titleStyles,
+            getTextStyles: (value) => _titleStyles,
             getTitles: (value) => value.toString(),
             margin: 8,
           ),
